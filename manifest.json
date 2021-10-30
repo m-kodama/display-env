@@ -1,0 +1,15 @@
+{
+  "name": "Display Env",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "指定したドメインの web サイト上にラベルを表示する拡張機能",
+  "content_scripts": [{
+    "matches": [
+      "https://www.google.co.jp/*",
+      "https://qiita.com/*"
+    ],
+    "js": [
+      "src/display_env.js"
+    ]
+  }]
+}
