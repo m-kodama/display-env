@@ -6,6 +6,11 @@
   "permissions": [
     "storage"
   ],
+  "icons": {
+    "16": "src/icon/icon16.png",
+    "48": "src/icon/icon48.png",
+    "128": "src/icon/icon128.png"
+  },
   "content_scripts": [{
     "matches": [
       "https://www.google.co.jp/*",
