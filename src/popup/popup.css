@@ -1,0 +1,117 @@
+:root {
+  --primary: 138, 180, 248;
+  --circle-background: 218, 220, 224;
+  --bar-background: 154, 160, 166;
+  --bar-width: 28px;
+  --bar-height: 12px;
+  --circle-size: 16px;
+  --ripple-size: 40px;
+  --overhang: 3px;
+}
+
+body {
+  background-color: rgb(36, 37, 40);
+  color: #9aa0a6;
+  user-select: none;
+}
+
+input {
+  margin: 0;
+}
+
+.pure-material-switch {
+  width: 128px;
+  padding: 2px 8px;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.pure-material-switch > span {
+  display: flex;
+  align-items: center;
+}
+
+/* bar */
+.pure-material-switch input {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  cursor: pointer;
+  width: var(--bar-width);
+  height: var(--bar-height);
+  border-radius: calc(var(--bar-height) / 2);
+  background-color: rgb(var(--bar-background));
+  transition: background-color linear 80ms;
+}
+.pure-material-switch input:checked {
+  background-color: rgba(var(--primary), 0.5);
+}
+
+.checkbox-container {
+  position: relative;
+}
+
+/* circle */
+.pure-material-switch input::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: calc(-1 * (var(--circle-size) - var(--bar-height)) / 2);
+  left: calc(-1 * var(--overhang));
+  z-index: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  background-color: rgb(var(--circle-background));
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 40%);
+  transition: transform linear 80ms, background-color linear 80ms;
+}
+.pure-material-switch input:checked::after {
+  background-color: rgb(var(--primary));
+  transform: translate3d(
+    calc(var(--bar-width) - var(--circle-size) + var(--overhang) * 2),
+    0,
+    0
+  );
+}
+
+/* ripple */
+.pure-material-switch input::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: calc(-1 * (var(--ripple-size) - var(--bar-height)) / 2);
+  left: calc(
+    -1 * (var(--ripple-size) - var(--circle-size)) / 2 - var(--overhang)
+  );
+  z-index: -1;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  outline: none;
+  background-color: rgb(var(--bar-background));
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+  transition: opacity 80ms, transform 80ms;
+}
+.pure-material-switch input:active::before {
+  background-color: rgb(var(--bar-background));
+  opacity: 1;
+  transform: scale(1);
+}
+.pure-material-switch input:checked:active::before {
+  background-color: rgba(var(--primary), 0.5);
+  opacity: 1;
+  transform: scale(1);
+  left: calc(
+    var(--bar-width) - (var(--ripple-size) - var(--circle-size)) / 2 -
+      var(--circle-size) + var(--overhang)
+  );
+}

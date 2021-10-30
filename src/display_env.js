@@ -25,6 +25,7 @@ window.onload = () => {
 
   // DOMの追加
   const body = document.getElementsByTagName('body');
+  label.id = '__display-env-label'
   body[0].appendChild(label);
 };
 

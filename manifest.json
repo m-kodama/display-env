@@ -11,5 +11,8 @@
     "js": [
       "src/display_env.js"
     ]
-  }]
+  }],
+  "browser_action": {
+    "default_popup": "src/popup/popup.html"
+  }
 }
