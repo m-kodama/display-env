@@ -27,6 +27,22 @@ window.onload = () => {
   const body = document.getElementsByTagName('body');
   label.id = '__display-env-label'
   body[0].appendChild(label);
+
+  const getDisplay = (showLabel) => showLabel ? 'block' : 'none';
+
+  // 現在の設定値を取得
+  chrome.storage.local.get('options', data => {
+    const showLabel = data.options?.showLabel ?? true;
+    label.style.display = getDisplay(showLabel);
+  });
+
+  // 設定変更の監視
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'local' && changes.options?.newValue) {
+      const showLabel = Boolean(changes.options.newValue.showLabel);
+      label.style.display = getDisplay(showLabel);
+    }
+  });
 };
 
 /**

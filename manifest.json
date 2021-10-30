@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "manifest_version": 2,
   "description": "指定したドメインの web サイト上にラベルを表示する拡張機能",
+  "permissions": [
+    "storage"
+  ],
   "content_scripts": [{
     "matches": [
       "https://www.google.co.jp/*",
